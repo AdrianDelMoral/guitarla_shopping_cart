@@ -17,7 +17,7 @@ function App() {
   }
 
   // si no sabes el estado inicial, inicializar con vacio/array vacio
-  const [data, setData] = useState(db)
+  const [data] = useState(db)
   const [cart, setCart] = useState(initialCart)
   
   const MIN_ITEMS = 1;
