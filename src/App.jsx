@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Guitar from "./components/Guitar"
 import Header from "./components/Header"
 import { db } from "./data/db"
@@ -17,6 +17,10 @@ function App() {
   
   const MIN_ITEMS = 1;
   const MAX_ITEMS = 5;
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))// Cada vez que el carrito cambie, se encargará useEffect de actualizar
+  }, [cart])
   
   function addToCart(item) {
     //? Inmutabilidad en react / State inmutable: que no puede cambiarse, si se ha de trabajar con un array, se debe duplicar y modificar
