@@ -11,15 +11,20 @@ function App() {
     setData(db)
   }, []) */
 
+  const initialCart = () => {
+    const localStorageCart = localStorage.getItem('cart')
+    return localStorageCart ? JSON.parse(localStorageCart) : [] // almacenará en el localStorage el carrito vacio o si tiene items, los items
+  }
+
   // si no sabes el estado inicial, inicializar con vacio/array vacio
   const [data, setData] = useState(db)
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(initialCart)
   
   const MIN_ITEMS = 1;
   const MAX_ITEMS = 5;
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart))// Cada vez que el carrito cambie, se encargará useEffect de actualizar
+    localStorage.setItem('cart', JSON.stringify(cart)) // Cada vez que el carrito cambie, se encargará useEffect de actualizar el carrito
   }, [cart])
   
   function addToCart(item) {
